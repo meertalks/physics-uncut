@@ -46,6 +46,32 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+        /* Custom styles for range sliders */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            background: #4a5568;
+            border-radius: 5px;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #2dd4bf;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #2dd4bf;
+            cursor: pointer;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -104,25 +130,16 @@
                 <h2 class="text-3xl font-bold text-center text-white mb-2">Core Physics Topics</h2>
                 <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto">Master the foundational pillars of physics. Each topic is a gateway to understanding how our world works.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Topic Card 1: Classical Mechanics -->
-       <h1 class="text-4xl md:text-5xl font-bold text-white text-center mb-12">
-            Classical Mechanics ⚙️
-        </h1>
-
-        <!-- Content Section -->
-        <div class="space-y-8">
-
-            <!-- Section 1: Newtonian Mechanics -->
-            <div class="content-card p-6 md:p-8">
-                <h2 class="text-3xl font-bold text-cyan-400">Newtonian Mechanics</h2>
-            </div>
-
-            <!-- Section 2: Lagrangian Mechanics -->
-            <div class="content-card p-6 md:p-8">
-                <h2 class="text-3xl font-bold text-cyan-400">Lagrangian Mechanics</h2>
-            </div>
-            
-        </div>
+                    <!-- Cards will be populated here -->
+                     <a href="classical-mechanics.html" class="block">
+                        <div class="glassmorphism p-6 text-center card-hover flex flex-col justify-between h-full">
+                            <div>
+                                <img src="https://placehold.co/100x100/111827/ffffff?text=⚙️" class="mx-auto mb-4 rounded-full" alt="Classical Mechanics Icon">
+                                <h3 class="text-xl font-semibold text-white mb-2">Classical Mechanics</h3>
+                                <p class="text-gray-300">Understand motion, forces, and energy with Newton's laws. The physics of everyday objects.</p>
+                            </div>
+                        </div>
+                    </a>
                     <div class="glassmorphism p-6 text-center card-hover flex flex-col justify-between">
                         <div>
                             <img src="https://placehold.co/100x100/111827/ffffff?text=⚡️" class="mx-auto mb-4 rounded-full" alt="Electromagnetism Icon">
@@ -193,16 +210,37 @@
 
         <!-- Interactive Simulations Section -->
         <section id="simulations" class="py-20 bg-gray-900">
-            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2">
-                    <h2 class="text-3xl font-bold text-white mb-4">Bring Physics to Life</h2>
-                    <p class="text-gray-400 mb-6">Don't just read about physics—experience it. Our interactive simulations let you play with the laws of nature, build circuits, launch projectiles, and watch waves interact in a virtual laboratory.</p>
-                    <a href="#" class="bg-transparent border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-gray-900 font-bold py-3 px-8 rounded-full transition">
-                        Explore Simulations
-                    </a>
-                </div>
-                <div class="md:w-1/2">
-                    <img src="https://placehold.co/600x400/1F2937/FFFFFF?text=Interactive+Simulation+Placeholder" alt="Interactive Simulation" class="rounded-xl shadow-2xl shadow-cyan-500/10">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-white text-center mb-2">Projectile Motion Simulator</h2>
+                <p class="text-gray-400 text-center mb-8 max-w-2xl mx-auto">Adjust the parameters below and press "Launch" to see how they affect the projectile's trajectory. </p>
+                <div class="flex flex-col lg:flex-row gap-8 items-start">
+                    <!-- Controls -->
+                    <div class="w-full lg:w-1/4 glassmorphism p-6 space-y-6">
+                        <div>
+                            <label for="velocity-slider" class="flex justify-between font-semibold"><span>Velocity</span><span id="velocity-value">50 m/s</span></label>
+                            <input type="range" id="velocity-slider" min="10" max="100" value="50" class="w-full">
+                        </div>
+                        <div>
+                            <label for="angle-slider" class="flex justify-between font-semibold"><span>Angle</span><span id="angle-value">45°</span></label>
+                            <input type="range" id="angle-slider" min="0" max="90" value="45" class="w-full">
+                        </div>
+                        <div>
+                            <label for="gravity-slider" class="flex justify-between font-semibold"><span>Gravity</span><span id="gravity-value">9.8 m/s²</span></label>
+                            <input type="range" id="gravity-slider" min="1" max="25" value="9.8" step="0.1" class="w-full">
+                        </div>
+                        <div class="flex space-x-2">
+                            <button id="launch-btn" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-6 rounded-lg transition">
+                                🚀 Launch
+                            </button>
+                            <button id="reset-btn" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg transition">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Canvas -->
+                    <div class="w-full lg:w-3/4 rounded-lg overflow-hidden bg-gray-800 aspect-video">
+                        <canvas id="simulation-canvas"></canvas>
+                    </div>
                 </div>
             </div>
         </section>
@@ -245,25 +283,25 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Scientist Card -->
                     <div class="text-center">
-                        <img class="w-32 h-32 rounded-full mx-auto shadow-lg" src="https://placehold.co/200x200/cccccc/333333?text=Newton" alt="Isaac Newton">
+                        <img class="w-32 h-32 rounded-full mx-auto shadow-lg object-cover" src="https://placehold.co/200x200/cccccc/333333?text=Newton" alt="Isaac Newton" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/333333?text=Newton';">
                         <h4 class="mt-4 text-lg font-semibold text-white">Isaac Newton</h4>
                         <p class="text-cyan-400 text-sm">Laws of Motion & Gravity</p>
                     </div>
                     <!-- Scientist Card -->
                     <div class="text-center">
-                        <img class="w-32 h-32 rounded-full mx-auto shadow-lg" src="https://placehold.co/200x200/cccccc/333333?text=Einstein" alt="Albert Einstein">
+                        <img class="w-32 h-32 rounded-full mx-auto shadow-lg object-cover" src="https://placehold.co/200x200/cccccc/333333?text=Einstein" alt="Albert Einstein" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/333333?text=Einstein';">
                         <h4 class="mt-4 text-lg font-semibold text-white">Albert Einstein</h4>
                         <p class="text-cyan-400 text-sm">Theory of Relativity</p>
                     </div>
                     <!-- Scientist Card -->
                     <div class="text-center">
-                        <img class="w-32 h-32 rounded-full mx-auto shadow-lg" src="https://placehold.co/200x200/cccccc/333333?text=Curie" alt="Marie Curie">
+                        <img class="w-32 h-32 rounded-full mx-auto shadow-lg object-cover" src="https://placehold.co/200x200/cccccc/333333?text=Curie" alt="Marie Curie" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/333333?text=Curie';">
                         <h4 class="mt-4 text-lg font-semibold text-white">Marie Curie</h4>
                         <p class="text-cyan-400 text-sm">Radioactivity</p>
                     </div>
                      <!-- Scientist Card -->
                     <div class="text-center">
-                        <img class="w-32 h-32 rounded-full mx-auto shadow-lg" src="https://placehold.co/200x200/cccccc/333333?text=Feynman" alt="Richard Feynman">
+                        <img class="w-32 h-32 rounded-full mx-auto shadow-lg object-cover" src="https://placehold.co/200x200/cccccc/333333?text=Feynman" alt="Richard Feynman" onerror="this.onerror=null;this.src='https://placehold.co/200x200/cccccc/333333?text=Feynman';">
                         <h4 class="mt-4 text-lg font-semibold text-white">Richard Feynman</h4>
                         <p class="text-cyan-400 text-sm">Quantum Electrodynamics</p>
                     </div>
@@ -420,6 +458,153 @@
                     modalSpinner.classList.add('hidden');
                 });
             });
+
+            // --- Simulation Logic ---
+            const canvas = document.getElementById('simulation-canvas');
+            const ctx = canvas.getContext('2d');
+            const launchBtn = document.getElementById('launch-btn');
+            const resetBtn = document.getElementById('reset-btn');
+
+            const velocitySlider = document.getElementById('velocity-slider');
+            const velocityValue = document.getElementById('velocity-value');
+            const angleSlider = document.getElementById('angle-slider');
+            const angleValue = document.getElementById('angle-value');
+            const gravitySlider = document.getElementById('gravity-slider');
+            const gravityValue = document.getElementById('gravity-value');
+            
+            let animationFrameId;
+            let projectile;
+            const trajectory = [];
+            const PIXELS_PER_METER = 4;
+
+            // Set canvas size based on container
+            function resizeCanvas() {
+                const container = canvas.parentElement;
+                canvas.width = container.clientWidth;
+                canvas.height = container.clientHeight;
+                drawInitialState();
+            }
+
+            // Draw the initial state (grid, etc.)
+            function drawInitialState() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                // Draw ground
+                ctx.fillStyle = '#4A5568';
+                ctx.fillRect(0, canvas.height - 20, canvas.width, 20);
+                
+                // Draw grid
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+                ctx.lineWidth = 1;
+                for (let x = 0; x < canvas.width; x += 50) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, canvas.height - 20);
+                    ctx.stroke();
+                }
+                for (let y = canvas.height - 20; y > 0; y -= 50) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(canvas.width, y);
+                    ctx.stroke();
+                }
+            }
+            
+            function resetSimulation() {
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                    animationFrameId = null;
+                }
+                projectile = null;
+                trajectory.length = 0;
+                drawInitialState();
+            }
+
+            // Update slider value displays
+            velocitySlider.oninput = () => { velocityValue.textContent = `${velocitySlider.value} m/s`; };
+            angleSlider.oninput = () => { angleValue.textContent = `${angleSlider.value}°`; };
+            gravitySlider.oninput = () => { gravityValue.textContent = `${gravitySlider.value} m/s²`; };
+            
+            function launch() {
+                resetSimulation();
+                
+                const v0 = parseFloat(velocitySlider.value);
+                const angle = parseFloat(angleSlider.value) * (Math.PI / 180);
+                const g = parseFloat(gravitySlider.value);
+
+                projectile = {
+                    x_m: 0,
+                    y_m: 0,
+                    vx_mps: v0 * Math.cos(angle),
+                    vy_mps: v0 * Math.sin(angle),
+                    g_mps2: g,
+                    radius: 5,
+                };
+                
+                animate();
+            }
+            
+            const timeStep = 1 / 60; // Simulate 60 steps per second
+
+            function animate() {
+                if (!projectile) return;
+                
+                drawInitialState();
+
+                // Update physics
+                projectile.vy_mps -= projectile.g_mps2 * timeStep;
+                projectile.x_m += projectile.vx_mps * timeStep;
+                projectile.y_m += projectile.vy_mps * timeStep - 0.5 * projectile.g_mps2 * timeStep * timeStep;
+
+                const drawX = 20 + projectile.x_m * PIXELS_PER_METER;
+                const drawY = canvas.height - 20 - projectile.y_m * PIXELS_PER_METER;
+                
+                trajectory.push({x: drawX, y: drawY});
+
+                // Draw trajectory
+                if(trajectory.length > 0) {
+                    ctx.strokeStyle = 'rgba(45, 212, 191, 0.8)';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(trajectory[0].x, trajectory[0].y);
+                    for(let i = 1; i < trajectory.length; i++) {
+                        ctx.lineTo(trajectory[i].x, trajectory[i].y);
+                    }
+                    ctx.stroke();
+                }
+                
+                // Draw projectile
+                ctx.beginPath();
+                ctx.arc(drawX, drawY, projectile.radius, 0, Math.PI * 2);
+                ctx.fillStyle = '#2dd4bf';
+                ctx.fill();
+                ctx.closePath();
+                
+                // Stop animation if it hits the ground or goes off-screen
+                if (drawY + projectile.radius >= canvas.height - 20 || drawX > canvas.width) {
+                    resetSimulation();
+                    // Redraw final state
+                    drawInitialState();
+                    // Redraw final trajectory
+                    ctx.strokeStyle = 'rgba(45, 212, 191, 0.8)';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    if(trajectory.length > 0) ctx.moveTo(trajectory[0].x, trajectory[0].y);
+                    for(let i = 1; i < trajectory.length; i++) {
+                        ctx.lineTo(trajectory[i].x, trajectory[i].y);
+                    }
+                    ctx.stroke();
+                    return;
+                }
+                
+                animationFrameId = requestAnimationFrame(animate);
+            }
+
+            launchBtn.addEventListener('click', launch);
+            resetBtn.addEventListener('click', resetSimulation);
+            window.addEventListener('resize', resizeCanvas);
+
+            // Initial setup
+            resizeCanvas();
 
         });
     </script>
