@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Uncut - Explore the Laws of the Cosmos</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #111827; /* Dark Blue-Gray */
+            color: #F3F4F6; /* Light Gray */
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+        .spinner {
+            border-top-color: #3498db;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-gray-900/80 backdrop-blur-sm fixed w-full z-50 top-0">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">
+                <span class="text-cyan-400">Physics</span>Uncut
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#topics" class="text-gray-300 hover:text-cyan-400 transition">Topics</a>
+                <a href="#ai-tutor" class="text-gray-300 hover:text-cyan-400 transition">AI Tutor</a>
+                <a href="#simulations" class="text-gray-300 hover:text-cyan-400 transition">Simulations</a>
+                <a href="#real-world" class="text-gray-300 hover:text-cyan-400 transition">Applications</a>
+                <a href="#scientists" class="text-gray-300 hover:text-cyan-400 transition">Scientists</a>
+                <a href="#contact" class="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-4 py-2 rounded-lg transition">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#topics" class="block py-2 px-6 text-sm text-gray-300 hover:bg-gray-800">Topics</a>
+            <a href="#ai-tutor" class="block py-2 px-6 text-sm text-gray-300 hover:bg-gray-800">AI Tutor</a>
+            <a href="#simulations" class="block py-2 px-6 text-sm text-gray-300 hover:bg-gray-800">Simulations</a>
+            <a href="#real-world" class="block py-2 px-6 text-sm text-gray-300 hover:bg-gray-800">Applications</a>
+            <a href="#scientists" class="block py-2 px-6 text-sm text-gray-300 hover:bg-gray-800">Scientists</a>
+            <a href="#contact" class="block py-2 px-6 text-sm text-gray-300 hover:bg-gray-800">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-bg min-h-screen flex items-center justify-center pt-20">
+            <div class="text-center bg-black/60 p-8 sm:p-12 rounded-2xl">
+                <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight">
+                    Explore the Fundamental <span class="text-cyan-400">Laws of the Universe</span>
+                </h1>
+                <p class="text-gray-300 mt-4 text-lg max-w-2xl mx-auto">
+                    From the tiniest particles to the vastness of space, dive into the world of physics with interactive lessons, AI-powered explanations, and real-world examples.
+                </p>
+                <a href="#topics" class="mt-8 inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105">
+                    Start Your Journey
+                </a>
+            </div>
+        </section>
+
+        <!-- Core Topics Section -->
+        <section id="topics" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-white mb-2">Core Physics Topics</h2>
+                <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto">Master the foundational pillars of physics. Each topic is a gateway to understanding how our world works.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Cards will be populated here -->
+                     <div class="glassmorphism p-6 text-center card-hover flex flex-col justify-between">
+                        <div>
+                            <img src="https://placehold.co/100x100/111827/ffffff?text=⚙️" class="mx-auto mb-4 rounded-full" alt="Classical Mechanics Icon">
+                            <h3 class="text-xl font-semibold text-white mb-2">Classical Mechanics</h3>
+                            <p class="text-gray-300">Understand motion, forces, and energy with Newton's laws. The physics of everyday objects.</p>
+                        </div>
+                    </div>
+                    <div class="glassmorphism p-6 text-center card-hover flex flex-col justify-between">
+                        <div>
+                            <img src="https://placehold.co/100x100/111827/ffffff?text=⚡️" class="mx-auto mb-4 rounded-full" alt="Electromagnetism Icon">
+                            <h3 class="text-xl font-semibold text-white mb-2">Electromagnetism</h3>
+                            <p class="text-gray-300">Explore the forces that govern electricity, magnetism, and light. The engine of modern technology.</p>
+                        </div>
+                    </div>
+                    <div class="glassmorphism p-6 text-center card-hover flex flex-col justify-between">
+                        <div>
+                            <img src="https://placehold.co/100x100/111827/ffffff?text=⚛️" class="mx-auto mb-4 rounded-full" alt="Quantum Mechanics Icon">
+                            <h3 class="text-xl font-semibold text-white mb-2">Quantum Mechanics</h3>
+                            <p class="text-gray-300">Enter the strange and fascinating world of atoms and subatomic particles.</p>
+                        </div>
+                        <button class="in-context-ai-btn mt-4 bg-cyan-500/30 hover:bg-cyan-500/50 text-white font-semibold px-4 py-2 rounded-lg transition w-full" data-topic="Quantum Mechanics">✨ Explain Simply</button>
+                    </div>
+                    <div class="glassmorphism p-6 text-center card-hover flex flex-col justify-between">
+                         <div>
+                            <img src="https://placehold.co/100x100/111827/ffffff?text=🌡️" class="mx-auto mb-4 rounded-full" alt="Thermodynamics Icon">
+                            <h3 class="text-xl font-semibold text-white mb-2">Thermodynamics</h3>
+                            <p class="text-gray-300">Learn about heat, temperature, and energy, and how they shape our environment.</p>
+                         </div>
+                    </div>
+                    <div class="glassmorphism p-6 text-center card-hover flex flex-col justify-between">
+                        <div>
+                            <img src="https://placehold.co/100x100/111827/ffffff?text=🌌" class="mx-auto mb-4 rounded-full" alt="Relativity Icon">
+                            <h3 class="text-xl font-semibold text-white mb-2">Relativity</h3>
+                            <p class="text-gray-300">Journey through Einstein's theories of space, time, and gravity.</p>
+                        </div>
+                    </div>
+                    <div class="glassmorphism p-6 text-center card-hover flex flex-col justify-between">
+                         <div>
+                            <img src="https://placehold.co/100x100/111827/ffffff?text=💡" class="mx-auto mb-4 rounded-full" alt="Optics Icon">
+                            <h3 class="text-xl font-semibold text-white mb-2">Optics</h3>
+                            <p class="text-gray-300">Discover the physics of light, from reflection and refraction to lenses and lasers.</p>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Physics Tutor Section -->
+        <section id="ai-tutor" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-white mb-2">✨ AI Physics Tutor</h2>
+                <p class="text-gray-400 mb-8 max-w-2xl mx-auto">Stuck on a concept? Ask our AI Tutor! Enter a topic below and get a simple explanation or a real-world example.</p>
+                
+                <div class="max-w-3xl mx-auto">
+                    <textarea id="ai-prompt-input" rows="3" class="w-full bg-gray-800 border-2 border-gray-700 rounded-lg p-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition" placeholder="e.g., 'Schrödinger's Cat' or 'the Doppler effect'"></textarea>
+                    
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4">
+                        <button id="explain-simply-btn" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-6 rounded-lg transition w-full sm:w-auto">✨ Explain Simply</button>
+                        <button id="real-world-btn" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg transition w-full sm:w-auto">✨ Give a Real-World Example</button>
+                    </div>
+
+                    <div id="ai-loading" class="mt-8 hidden">
+                        <div class="flex justify-center items-center">
+                            <div class="spinner w-8 h-8 rounded-full border-4 border-gray-700"></div>
+                            <p class="ml-4 text-gray-300">Our AI is thinking...</p>
+                        </div>
+                    </div>
+
+                    <div id="ai-response" class="mt-8 text-left glassmorphism p-6 hidden min-h-[100px]">
+                        <p id="ai-response-text" class="text-gray-200 whitespace-pre-wrap"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Simulations Section -->
+        <section id="simulations" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold text-white mb-4">Bring Physics to Life</h2>
+                    <p class="text-gray-400 mb-6">Don't just read about physics—experience it. Our interactive simulations let you play with the laws of nature, build circuits, launch projectiles, and watch waves interact in a virtual laboratory.</p>
+                    <a href="#" class="bg-transparent border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-gray-900 font-bold py-3 px-8 rounded-full transition">
+                        Explore Simulations
+                    </a>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://placehold.co/600x400/1F2937/FFFFFF?text=Interactive+Simulation+Placeholder" alt="Interactive Simulation" class="rounded-xl shadow-2xl shadow-cyan-500/10">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Real World Applications Section -->
+        <section id="real-world" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-white mb-2">Physics in Action</h2>
+                <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto">See how fundamental principles power the world around us, from the smartphone in your pocket to the stars in the sky.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-800 rounded-lg overflow-hidden card-hover">
+                        <img src="https://images.unsplash.com/photo-1588282322673-c31965a75c3e?q=80&w=2071&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Cinema">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">The Physics of Movies</h3>
+                            <p class="text-gray-400">How do 3D glasses work? What's the science behind epic movie explosions?</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg overflow-hidden card-hover">
+                        <img src="https://images.unsplash.com/photo-1555864424-46c6ea3c825b?q=80&w=2070&auto=format&fit=crop" class="w-full h-48 object-cover" alt="GPS Satellite">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">GPS and Relativity</h3>
+                            <p class="text-gray-400">Discover how Einstein's theories of relativity are essential for precise GPS navigation.</p>
+                        </div>
+                    </div>
+                     <div class="bg-gray-800 rounded-lg overflow-hidden card-hover">
+                        <img src="https://images.unsplash.com/photo-1579154230794-ef163351a55b?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="MRI Machine">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">Medical Imaging (MRI)</h3>
+                            <p class="text-gray-400">Learn how powerful magnets and radio waves can see inside the human body.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Great Scientists Section -->
+        <section id="scientists" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-white mb-12">Pioneers of Physics</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Scientist Card -->
+                    <div class="text-center">
+                        <img class="w-32 h-32 rounded-full mx-auto shadow-lg" src="https://placehold.co/200x200/cccccc/333333?text=Newton" alt="Isaac Newton">
+                        <h4 class="mt-4 text-lg font-semibold text-white">Isaac Newton</h4>
+                        <p class="text-cyan-400 text-sm">Laws of Motion & Gravity</p>
+                    </div>
+                    <!-- Scientist Card -->
+                    <div class="text-center">
+                        <img class="w-32 h-32 rounded-full mx-auto shadow-lg" src="https://placehold.co/200x200/cccccc/333333?text=Einstein" alt="Albert Einstein">
+                        <h4 class="mt-4 text-lg font-semibold text-white">Albert Einstein</h4>
+                        <p class="text-cyan-400 text-sm">Theory of Relativity</p>
+                    </div>
+                    <!-- Scientist Card -->
+                    <div class="text-center">
+                        <img class="w-32 h-32 rounded-full mx-auto shadow-lg" src="https://placehold.co/200x200/cccccc/333333?text=Curie" alt="Marie Curie">
+                        <h4 class="mt-4 text-lg font-semibold text-white">Marie Curie</h4>
+                        <p class="text-cyan-400 text-sm">Radioactivity</p>
+                    </div>
+                     <!-- Scientist Card -->
+                    <div class="text-center">
+                        <img class="w-32 h-32 rounded-full mx-auto shadow-lg" src="https://placehold.co/200x200/cccccc/333333?text=Feynman" alt="Richard Feynman">
+                        <h4 class="mt-4 text-lg font-semibold text-white">Richard Feynman</h4>
+                        <p class="text-cyan-400 text-sm">Quantum Electrodynamics</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-900 text-gray-400 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold text-white mb-4">Have Questions?</h3>
+            <p class="max-w-md mx-auto mb-6">Reach out to us, and let's explore the wonders of physics together.</p>
+            <a href="mailto:hello@physicsuncut.com" class="text-cyan-400 hover:text-cyan-300 text-lg">hello@physicsuncut.com</a>
+            
+            <div class="flex justify-center space-x-6 mt-8">
+                <a href="#" class="hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/></svg></a>
+                <a href="#" class="hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg></a>
+                <a href="#" class="hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12.007c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12.007C22 6.477 17.523 2 12 2z" clip-rule="evenodd"/></svg></a>
+            </div>
+
+            <p class="mt-8 text-sm">&copy; 2024 PhysicsUncut. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- AI Explanation Modal -->
+    <div id="ai-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden">
+        <div class="glassmorphism max-w-2xl w-full rounded-xl shadow-2xl shadow-cyan-500/20 p-6 relative text-white border-2 border-cyan-500/50">
+            <button id="modal-close-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
+            <h3 id="modal-title" class="text-2xl font-bold mb-4 text-cyan-400"></h3>
+            <div id="modal-content" class="max-h-[60vh] overflow-y-auto pr-2">
+                <div id="modal-spinner" class="flex justify-center items-center h-24">
+                    <div class="spinner w-8 h-8 rounded-full border-4 border-gray-700"></div>
+                </div>
+                <p id="modal-text" class="text-gray-200 whitespace-pre-wrap"></p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JavaScript for Mobile Menu & AI Features -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Mobile Menu Logic ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // --- AI Tutor Elements ---
+            const aiPromptInput = document.getElementById('ai-prompt-input');
+            const explainSimplyBtn = document.getElementById('explain-simply-btn');
+            const realWorldBtn = document.getElementById('real-world-btn');
+            const aiLoading = document.getElementById('ai-loading');
+            const aiResponse = document.getElementById('ai-response');
+            const aiResponseText = document.getElementById('ai-response-text');
+
+            // --- Modal Elements ---
+            const aiModal = document.getElementById('ai-modal');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+            const modalTitle = document.getElementById('modal-title');
+            const modalText = document.getElementById('modal-text');
+            const modalSpinner = document.getElementById('modal-spinner');
+
+            // --- Gemini API Call Function ---
+            const callGemini = async (prompt) => {
+                const apiKey = ""; // API key will be handled by the environment
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error(`API error: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    
+                    if (result.candidates && result.candidates[0].content.parts[0].text) {
+                        return result.candidates[0].content.parts[0].text;
+                    } else {
+                        return "Sorry, I couldn't generate a response. Please try again.";
+                    }
+                } catch (error) {
+                    console.error("Gemini API call failed:", error);
+                    return "An error occurred while trying to connect to the AI service.";
+                }
+            };
+            
+            // --- AI Tutor Logic ---
+            const handleTutorRequest = async (promptType) => {
+                const userInput = aiPromptInput.value.trim();
+                if (!userInput) {
+                    aiResponseText.textContent = "Please enter a physics concept in the text box first.";
+                    aiResponse.classList.remove('hidden');
+                    return;
+                }
+
+                aiLoading.classList.remove('hidden');
+                aiResponse.classList.add('hidden');
+                aiResponseText.textContent = '';
+                
+                let prompt;
+                if(promptType === 'simple'){
+                    prompt = `Explain the physics concept of "${userInput}" in a simple and easy-to-understand way, as if you were talking to a high school student.`;
+                } else {
+                    prompt = `Provide a compelling real-world example of the physics concept "${userInput}". Explain how the concept applies to that example.`;
+                }
+
+                const resultText = await callGemini(prompt);
+                
+                aiLoading.classList.add('hidden');
+                aiResponseText.textContent = resultText;
+                aiResponse.classList.remove('hidden');
+            };
+
+            explainSimplyBtn.addEventListener('click', () => handleTutorRequest('simple'));
+            realWorldBtn.addEventListener('click', () => handleTutorRequest('real-world'));
+
+            // --- Modal Logic ---
+            const openModal = () => aiModal.classList.remove('hidden');
+            const closeModal = () => aiModal.classList.add('hidden');
+            modalCloseBtn.addEventListener('click', closeModal);
+            aiModal.addEventListener('click', (e) => {
+                if (e.target === aiModal) closeModal();
+            });
+
+            // --- In-Context AI Button Logic ---
+            document.querySelectorAll('.in-context-ai-btn').forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    const topic = e.target.dataset.topic;
+                    if (!topic) return;
+
+                    modalTitle.textContent = `✨ Explaining: ${topic}`;
+                    modalText.textContent = '';
+                    modalSpinner.classList.remove('hidden');
+                    openModal();
+                    
+                    const prompt = `Explain the physics concept of "${topic}" in a simple and easy-to-understand way for a beginner.`;
+                    const resultText = await callGemini(prompt);
+                    
+                    modalText.textContent = resultText;
+                    modalSpinner.classList.add('hidden');
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>
