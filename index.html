@@ -375,7 +375,12 @@
 
             // --- Gemini API Call Function ---
             const callGemini = async (prompt) => {
-                const apiKey = ""; // API key will be handled by the environment
+                const apiKey = ""; // User needs to add their key here for the AI to work.
+
+                if (!apiKey) {
+                    return "ERROR: API Key is missing.\n\nPlease get a free API key from Google AI Studio and add it to the 'apiKey' variable in the script at the bottom of the HTML file. This is a required step to enable the AI features.";
+                }
+
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 try {
@@ -386,7 +391,10 @@
                     });
                     
                     if (!response.ok) {
-                        throw new Error(`API error: ${response.status}`);
+                        if (response.status === 401 || response.status === 403) {
+                             return "ERROR: Your API Key is invalid or unauthorized.\n\nPlease double-check that you have copied the correct key from Google AI Studio, or generate a new one.";
+                        }
+                        return `An API error occurred: ${response.statusText} (${response.status}). Please try again later.`;
                     }
 
                     const result = await response.json();
@@ -394,11 +402,11 @@
                     if (result.candidates && result.candidates[0].content.parts[0].text) {
                         return result.candidates[0].content.parts[0].text;
                     } else {
-                        return "Sorry, I couldn't generate a response. Please try again.";
+                        return "Sorry, I couldn't generate a response. Please check the model's output format.";
                     }
                 } catch (error) {
                     console.error("Gemini API call failed:", error);
-                    return "An error occurred while trying to connect to the AI service.";
+                    return "A network error occurred. Please check your internet connection and try again.";
                 }
             };
             
